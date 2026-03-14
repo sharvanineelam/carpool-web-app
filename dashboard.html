@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>CarPool Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<h2><i class="fa-solid fa-car"></i> CarPool</h2>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Home</a></li>
+
+<li><a href="postride.html"><i class="fa-solid fa-circle-plus"></i> Create Ride</a></li>
+
+<li><a href="searchride.html"><i class="fa-solid fa-route"></i> Find Ride</a></li>
+
+<li><a href="myrides.html"><i class="fa-solid fa-list-check"></i> Manage Rides</a></li>
+
+<li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+<li><a href="help.html"><i class="fa-solid fa-circle-question"></i> Help</a></li>
+
+<li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
+
+<li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</nav>
+<!-- HERO SECTION -->
+
+<div class="hero-section">
+
+<div class="hero-box">
+
+<h1>Book a Ride</h1>
+
+<div class="ride-input">
+
+<i class="fa-solid fa-location-dot"></i>
+<input type="text" placeholder="Enter Pickup Location">
+
+</div>
+
+<div class="ride-input">
+
+<i class="fa-solid fa-circle-dot"></i>
+<input type="text" placeholder="Enter Drop Location">
+
+</div>
+
+<button class="ride-btn">Find Rides</button>
+
+</div>
+
+</div>
+
+<h2 class="services-title">Our Services</h2>
+
+<div class="services">
+
+<div class="service-card">
+<i class="fa-solid fa-car"></i>
+<p>Car Pool</p>
+</div>
+
+<div class="service-card">
+<i class="fa-solid fa-route"></i>
+<p>Ride Sharing</p>
+</div>
+
+<div class="service-card">
+<i class="fa-solid fa-users"></i>
+<p>Group Travel</p>
+</div>
+
+<div class="service-card">
+<i class="fa-solid fa-map"></i>
+<p>City Travel</p>
+</div>
+
+</div>
+<div class="dashboard-container">
+    <h1 id="greeting"></h1>
+
+<h1>CarPool Dashboard</h1>
+
+<p>Manage rides and explore travel opportunities.</p>
+
+<div class="stats">
+
+<div class="stat-card">
+<h2 id="totalRides">0</h2>
+<p>Total Rides Posted</p>
+</div>
+
+<div class="stat-card">
+<h2 id="availableRides">0</h2>
+<p>Available Trips</p>
+</div>
+
+<div class="stat-card">
+<h2>Active</h2>
+<p>Platform Status</p>
+</div>
+
+</div>
+
+<h2 style="margin-top:40px">Quick Actions</h2>
+
+<div class="dashboard-cards">
+
+<div class="card" onclick="location.href='postride.html'">
+
+<i class="fa-solid fa-circle-plus card-icon"></i>
+
+<h3>Create Ride</h3>
+
+<p>Offer a ride to passengers</p>
+
+</div>
+
+<div class="card" onclick="location.href='searchride.html'">
+
+<i class="fa-solid fa-route card-icon"></i>
+
+<h3>Find Ride</h3>
+
+<p>Search available rides</p>
+
+</div>
+
+<div class="card" onclick="location.href='myrides.html'">
+
+<i class="fa-solid fa-list-check card-icon"></i>
+
+<h3>Manage Rides</h3>
+
+<p>View and manage rides</p>
+
+</div>
+
+</div>
+
+<h2 style="margin-top:40px">Recent Activity</h2>
+
+<div id="recentRides" class="rides-container"></div>
+
+</div>
+
+<footer class="footer">
+
+<p>© 2026 CarPool Platform</p>
+
+</footer>
+
+<script>
+
+function showGreeting(){
+
+let email = localStorage.getItem("loggedUser")
+
+let users = JSON.parse(localStorage.getItem("users")) || []
+
+let user = users.find(u => u.email === email)
+
+let hour = new Date().getHours()
+
+let greeting = ""
+
+if(hour < 12){
+greeting = "Good Morning"
+}
+else if(hour < 17){
+greeting = "Good Afternoon"
+}
+else{
+greeting = "Good Evening"
+}
+
+document.getElementById("greeting").innerText =
+greeting + ", " + user.name
+
+}
+
+showGreeting()
+
+</script>
+
+</body>
+
+</html>

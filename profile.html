@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>User Profile</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+.page-title{
+text-align:center;
+margin-top:60px;
+margin-bottom:25px;
+font-size:30px;
+font-weight:600;
+}
+
+.profile-card{
+width:380px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.profile-img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:15px;
+}
+
+.profile-card p{
+margin:8px 0;
+}
+
+.upload-btn{
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<h2><i class="fa-solid fa-car"></i> CarPool</h2>
+
+<ul>
+
+<li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Home</a></li>
+
+<li><a href="postride.html"><i class="fa-solid fa-circle-plus"></i> Create Ride</a></li>
+
+<li><a href="searchride.html"><i class="fa-solid fa-magnifying-glass"></i> Find Ride</a></li>
+
+<li><a href="myrides.html"><i class="fa-solid fa-list"></i> My Rides</a></li>
+
+<li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</nav>
+
+<h1 class="page-title">
+<i class="fa-solid fa-user"></i> User Profile
+</h1>
+
+<div class="profile-card">
+
+<img id="profileImage" class="profile-img"
+src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+
+<input type="file" class="upload-btn" accept="image/*" onchange="uploadImage(event)">
+
+<p><b>Name:</b> <span id="profileName"></span></p>
+
+<p><b>Email:</b> <span id="profileEmail"></span></p>
+
+<p><b>Phone:</b> Not Added</p>
+
+<p><b>City:</b> Not Added</p>
+
+</div>
+
+<footer class="footer">
+
+<p>© 2026 CarPool Platform | Ride Sharing Web Application</p>
+
+</footer>
+
+<script>
+
+function loadProfile(){
+
+let email = localStorage.getItem("loggedUser")
+
+let users = JSON.parse(localStorage.getItem("users")) || []
+
+let user = users.find(u => u.email === email)
+
+if(user){
+
+document.getElementById("profileName").innerText = user.name
+document.getElementById("profileEmail").innerText = user.email
+
+}
+
+let img = localStorage.getItem("profileImage")
+
+if(img){
+
+document.getElementById("profileImage").src = img
+
+}
+
+}
+
+function uploadImage(event){
+
+let file = event.target.files[0]
+
+let reader = new FileReader()
+
+reader.onload = function(){
+
+localStorage.setItem("profileImage",reader.result)
+
+document.getElementById("profileImage").src = reader.result
+
+}
+
+reader.readAsDataURL(file)
+
+}
+
+loadProfile()
+
+</script>
+
+</body>
+
+</html>
